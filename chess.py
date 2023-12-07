@@ -23,7 +23,7 @@ def find_min_moves(size, start, end):
 
         if (x, y) == end:
             print(iteration)
-            return moves, path
+            return moves
 
         for k in range(7):
             iteration += 1
@@ -36,7 +36,7 @@ def find_min_moves(size, start, end):
 
 
 with open('output.txt', 'w') as file:
-    moves, path = find_min_moves(size, start, end)
+    moves = find_min_moves(size, start, end)
     file.write(str(moves))
 
 
