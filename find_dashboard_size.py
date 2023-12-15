@@ -1,16 +1,23 @@
 import math
 
 def min_square_size(N, W, H):
-    if max(H, W) <= 2 * N:
-        return max(H, W)
-    sqr = math.sqrt(N)
-    root = math.floor(sqr)
-    left = True if sqr - root > 0 else False
-    max_width = root * W + W if left and W <= H else root * W
-    max_height = root * H + H if left and W >= H else root * H
-    return max(max_width, max_height)
+    count = 0
+    left, right = 1, max(W, H) * N
+
+    while left < right:
+        count += 1
+        mid = (left + right) // 2
+        sheets_per_row = mid // W
+        sheets_per_col = mid // H
+        total_sheets = sheets_per_row * sheets_per_col
+
+        if total_sheets >= N:
+            right = mid
+        else:   
+            left = mid + 1 
 
 
+    return left, count
 
 
 N, W, H = map(int, input().split())
