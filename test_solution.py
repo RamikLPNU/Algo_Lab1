@@ -12,6 +12,8 @@ class TestSolution(unittest.TestCase):
         
         result = Solution.minimal_square_size(4, 1, 1)
         self.assertEqual(result, (2), "Помилка для test3")
+        
+    
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,23 +1,19 @@
 import math
-class Solution:
-    @staticmethod
-    def minimal_square_size(N, W, H):
-        max_leaf_size = max(W, H)
-        min_leaf_size = min(W, H)
-        n_min = int(N ** 0.5)
-        
-        if n_min == 1:
-            return N * min_leaf_size
 
-        leafs_med = n_min * max_leaf_size
-        leafs_min = N * min_leaf_size 
-        leafs_max = N * max_leaf_size 
-        
-        min_side = min(leafs_min, leafs_max, leafs_med)
-    
-        return min_side 
+def min_square_size(N, W, H):
+    if max(H, W) <= 2 * N:
+        return max(H, W)
+    sqr = math.sqrt(N)
+    root = math.floor(sqr)
+    left = True if sqr - root > 0 else False
+    max_width = root * W + W if left and W <= H else root * W
+    max_height = root * H + H if left and W >= H else root * H
+    return max(max_width, max_height)
 
-    """ N, W, H = map(int, input().split())
 
-    result = minimal_square_size(N, W, H)
-    print(result) """
+
+
+N, W, H = map(int, input().split())
+
+result = min_square_size(N, W, H)
+print(result)
