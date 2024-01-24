@@ -1,12 +1,24 @@
-import unittest
-from find_dashboard_size import Solution
+def minimal_square_size(N, W, H):
+    count = 0
+    left, right = 1, max(W, H) * N
 
-class TestSolution(unittest.TestCase):
-    def test_find_dashboard_size(self):
-        
-        result = Solution.minimal_square_size(10, 2, 3)
-        self.assertEqual(result, (9), "Помилка для test1")
-        
-        result = Solution.minimal_square_size(2, 1000000000, 999999999)
-        self.assertEqual(result, (1999999998), "Помилка для test2")
-        
+    while left < right:
+        count += 1
+        mid = (left + right) // 2
+        sheets_per_row = mid // W
+        sheets_per_col = mid // H
+        total_sheets = sheets_per_row * sheets_per_col
+
+        if total_sheets >= N:
+            right = mid
+        else:   
+            left = mid + 1 
+
+
+    return left, count
+
+
+N, W, H = map(int, input().split())
+
+result = minimal_square_size(N, W, H)
+print(result)
